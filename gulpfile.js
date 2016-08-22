@@ -300,8 +300,8 @@ var sassTask = function() {
 };
 
 // create a sass with and without dependancy on fontello
-gulp.task('sass', ['appconfig', 'css-rename'], sassTask);
-gulp.task('sassfontello', ['appconfig', 'fontello', 'css-rename'], sassTask);
+gulp.task('sass', ['appconfig', 'fontello', 'css-rename'], sassTask);
+gulp.task('sassnofontello', ['appconfig', 'css-rename'], sassTask);
 
 /**
  * css-rename to change .css to .sass extensions because we want the css imported :/
@@ -404,7 +404,7 @@ gulp.task('fontello:livereload', ['fontello', 'templates:index'], function() {
     livereload.reload();
 });
 
-gulp.task('sass:livereload', ['sass', 'templates:index'], function() {
+gulp.task('sass:livereload', ['sassnofontello', 'templates:index'], function() {
     livereload.reload();
 });
 
@@ -434,5 +434,4 @@ gulp.task('copystatics:livereload', ['copystatics'], function() {
 
 gulp.task('js', ['js:libs', 'js:app', 'js:sdk']);
 gulp.task('templates', ['templates:index', 'templates:rest']);
-gulp.task('default', ['copystatics', 'sassfontello', 'templates', 'js']);
-gulp.task('nofontello', ['copystatics', 'sass', 'templates', 'js']);
+gulp.task('default', ['copystatics', 'sass', 'templates', 'js']);
